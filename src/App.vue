@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <h1>Tasks</h1>
+    <h1>Tasks Management</h1>
 
     <NewTask @taskAdd="addTast($event)" :msg="msg"></NewTask>
-    <TaskGrid :tasks="tasks" />
+    <TaskGrid @removeTask="taskDeleted($event)" :tasks="tasks" />
   </div>
 </template>
 
@@ -38,11 +38,12 @@ export default {
 		} else {
 			this.createMessage(3000, "this task exist", "warning");
 		}
-	 }else {
-		 this.createMessage(2000,'Please, insert a new task', 'error')
-	 }	     
-    },
-
+	 } else 
+		 this.createMessage(2000,'Please, insert a new task', 'error');	     
+	},
+	taskDeleted(task) {
+		this.tasks.splice( this.tasks.indexOf(task), 1 );
+	},
     createMessage(time, text, type) {
       this.msg.text = text;
       this.msg.typeMessage = type;

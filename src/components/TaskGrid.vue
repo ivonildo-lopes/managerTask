@@ -2,10 +2,8 @@
 
     <div class="task-grid">
         <template v-if="tasks.length > 0">
-            <!-- <div v-for="task in tasks" :key="task.name"> -->
-                  <Task v-for="task in tasks" :key="task.name" 
-                  :task="task"></Task>
-            <!-- </div> -->
+          <Task v-for="task in tasks" :key="task.name" 
+          @removeTask="remove" :task="task"></Task>  
         </template>
         <p v-else class="no-tasks"> Sem Nenhuma atividade!</p>
     </div>
@@ -18,6 +16,11 @@
         components: { Task },
         props: {
             tasks: {type: Array, required: true}
+        },
+        methods: {
+            remove(task) {
+                this.$emit("removeTask", task);
+            }
         }
     };
 </script>
