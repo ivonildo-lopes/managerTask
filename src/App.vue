@@ -27,15 +27,20 @@ export default {
   },
   methods: {
     addTast(event) {
-      const sameName = task =>
-        task.name.toUpperCase() === event.name.toUpperCase();
-      const reallyNew = this.tasks.filter(sameName).length == 0;
-      if (reallyNew) {
-		  this.tasks.push(event);
-		  this.createMessage(3000, "Task add with success", "success");
-      } else {
-        this.createMessage(3000, "this task exist", "warning");
-      }
+
+	 if(event.name){
+			const sameName = task =>
+			task.name.toUpperCase() === event.name.toUpperCase();
+			const reallyNew = this.tasks.filter(sameName).length == 0;
+		if (reallyNew) {
+			this.tasks.push(event);
+			this.createMessage(3000, "Task add with success", "success");
+		} else {
+			this.createMessage(3000, "this task exist", "warning");
+		}
+	 }else {
+		 this.createMessage(2000,'Please, insert a new task', 'error')
+	 }	     
     },
 
     createMessage(time, text, type) {
