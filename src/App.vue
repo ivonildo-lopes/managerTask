@@ -16,8 +16,8 @@ export default {
   data() {
     return {
       tasks: [
-        { name: "Fazer as compras", pending: false },
-        { name: "Pagar as contas", pending: true }
+        // { name: "Fazer as compras", pending: false },
+        // { name: "Pagar as contas", pending: true }
       ],
       msg: {
         text: "",
